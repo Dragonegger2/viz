@@ -10,6 +10,13 @@ module.exports = function(grunt) {
           'git pull origin develop'
         ].join('&&')
       },
+      installEDS2: {
+        command: [
+          'cd eds2',
+          'npm install',
+          'npm run server'
+        ].join('&&')
+      }
       options: {
         failOnError: false
       }
@@ -17,5 +24,5 @@ module.exports = function(grunt) {
   });
 
   //Default task
-  grunt.registerTask('default', ['shell:cloneBuzz']);
+  grunt.registerTask('default', ['shell:cloneBuzz', 'shell:installEDS2']);
 };
