@@ -3,16 +3,19 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     shell: {
-      gitclone: {
-        command: 'git clone http://tlennon@stash/scm/buzz/buzzframework.git'
+      cloneBuzz: {
+        command: [
+          'git clone http://tlennon@stash/scm/inter/eds2.git',
+          'cd eds2',
+          'git pull origin develop'
+        ].join('&&')
+      },
+      options: {
+        failOnError: false
       }
     }
   });
 
-  // Load the plugin for grunt-git.
-  grunt.loadNpmTasks('grunt-git');
-
-  // Default task(s).
-  //TODO: Add tasks as ['','',etc]
-  grunt.registerTask('default', ['shell:gitclone']);
+  //Default task
+  grunt.registerTask('default', ['shell:cloneBuzz']);
 };
